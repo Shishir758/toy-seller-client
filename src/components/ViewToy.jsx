@@ -5,8 +5,10 @@ import Header from './Header';
 import 'react-toastify/dist/ReactToastify.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import useTitle from '../useTitle';
 
 const ViewToy = () => {
+  useTitle('View Toy')
   const { id } = useParams();
   const [detailsData, setDetailsData] = useState([]);
   const [viewToy, setViewToy] = useState(null);

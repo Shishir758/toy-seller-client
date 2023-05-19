@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './provider/AuthProviders';
 import { useNavigate, useLocation  } from "react-router-dom";
+import useTitle from '../useTitle';
 
 
 const auth = getAuth(app);
 
 const Login = () => {
+  useTitle('Login')
   const { loginUser } = useContext(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();

@@ -5,8 +5,10 @@ import { AuthContext } from './provider/AuthProviders';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../useTitle';
 
 const AddAtoy = () => {
+  useTitle('Add A Toy')
   const { user, loading } = useContext(AuthContext);
   console.log(user);
 

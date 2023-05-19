@@ -1,4 +1,5 @@
 import React from 'react';
+import useTitle from '../useTitle';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -6,7 +7,7 @@ import Header from './Header';
 const ref = React.createRef();
 
 const blog = () => {
-
+  useTitle('Blog')
   return (
     <><Header></Header>
       <div className="mt-5">

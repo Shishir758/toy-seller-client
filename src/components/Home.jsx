@@ -7,10 +7,12 @@ import 'react-tabs/style/react-tabs.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { ToastContainer } from 'react-bootstrap';
+import useTitle from '../useTitle';
 
 
 
 const Home = () => {
+  useTitle('Home')
 
 
   const { loading, user } = useContext(AuthContext);

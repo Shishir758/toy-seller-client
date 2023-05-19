@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../useTitle';
 import Footer from './Footer';
 import Header from './Header';
 import { AuthContext } from './provider/AuthProviders';
 
 const MyToys = () => {
+  useTitle('My Toys')
   const alltoys = useLoaderData();
   const { user } = useContext(AuthContext);
   const [jobs, setJobs] = useState([]);

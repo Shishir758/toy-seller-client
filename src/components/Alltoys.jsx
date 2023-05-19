@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../useTitle';
 
 const Alltoys = () => {
+  useTitle('All Toys')
   const [searchText, setSearchText] = useState('');
   const [toys, setToys] = useState([]);
   const alltoys = useLoaderData();

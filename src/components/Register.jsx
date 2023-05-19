@@ -6,8 +6,10 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from './provider/AuthProviders';
 import { getAuth, updateProfile } from "firebase/auth";
+import useTitle from '../useTitle';
 
 const Register = () => {
+  useTitle('Register')
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
