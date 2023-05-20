@@ -7,22 +7,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../useTitle';
 
+const initialState  = {
+  pictureUrl: '',
+  name: '',
+  sellerName: '', // Retrieve this from the logged-in user
+  sellerEmail: '', // Retrieve this from the logged-in user
+  subCategory: '',
+  price: '',
+  rating: '',
+  quantity: '',
+  description: '',
+}
+
 const AddAtoy = () => {
   useTitle('Add A Toy')
   const { user, loading } = useContext(AuthContext);
   console.log(user);
 
-  const [toyData, setToyData] = useState({
-    pictureUrl: '',
-    name: '',
-    sellerName: '', // Retrieve this from the logged-in user
-    sellerEmail: '', // Retrieve this from the logged-in user
-    subCategory: '',
-    price: '',
-    rating: '',
-    quantity: '',
-    description: '',
-  });
+  const [toyData, setToyData] = useState(initialState);
 
   useEffect(() => {
     const auth = getAuth();
@@ -49,15 +51,17 @@ const AddAtoy = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+console.log(e.target);
     fetch('https://toy-serer-side.vercel.app/products',{
-      method: 'post',
+      method: 'POST',
       headers:{'content-type':'application/json'},
       body: JSON.stringify(toyData)
     })
     .then(res=>res.json())
     .then(data =>{console.log(data)});
     toast.success('Data sent successfully!');
+    setToyData(initialState);
+    
   };
 
 
@@ -141,7 +145,7 @@ const AddAtoy = () => {
             required
           >
             <option value="">Select a sub-category</option>
-            <option value=">Regular Toy Car">Regular Toy Car</option>
+            <option value="Regular Toy Car">Regular Toy Car</option>
             <option value="Police Toy Car">Police Toy Car</option>
             <option value="Toy Truck">Toy Truck</option>
           </select>

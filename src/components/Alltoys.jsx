@@ -6,18 +6,19 @@ import useTitle from '../useTitle';
 
 const Alltoys = () => {
   useTitle('All Toys')
+
   const [searchText, setSearchText] = useState('');
   const [toys, setToys] = useState([]);
-  const alltoys = useLoaderData();
+  const [sort, setSort] = useState('low');
+  const [sortOrder, setSortOrder] = useState('');
 
-  console.log(alltoys);
+  const alltoys = useLoaderData();
 
   useEffect(() => {
     fetch('https://toy-serer-side.vercel.app/products')
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);
-
 
   const handleSearch = () => {
     fetch(`https://toy-serer-side.vercel.app/searchToy/${searchText}`)
@@ -27,24 +28,42 @@ const Alltoys = () => {
       });
   };
 
-  
+  const handleSortLowestPrice = () => {
+    const sorted = toys.slice().sort((a, b) => a.price - b.price);
+    setToys(sorted);
+    setSortOrder('asc');
+  };
+
+  const handleSortHighestPrice = () => {
+    const sorted = toys.slice().sort((a, b) => b.price - a.price);
+    setToys(sorted);
+    setSortOrder('desc');
+  };
+
+
+
   return (
     <>
       <Header />
-      <div className="search-box p-2 text-center border-b-slate-400">
-        <input
-          onChange={(event) => setSearchText(event.target.value)}
-          type="text"
-          className="p-1"
-        />
+
+      <div className="search-box p-2 text-center border-b-slate-400 mt-4">
         <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mt-4"
+          className='btn mr-8 bg-blue-500 p-2 text-white rounded-xl'
+          onClick={() => window.location.reload()}
+        >
+          Show All
+        </button>
+        <input onChange={(event) => setSearchText(event.target.value)} class="shadow appearance-none border rounded mr-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Search" />
+        <button
+          className="btn ml-8 bg-blue-500 p-2 text-white rounded-xl"
           onClick={handleSearch}
         >
           Search
-        </button> 
-        <button className='mr-4 ml-20 '>High Price</button>
-        <button>Low Price</button>
+        </button>
+
+
+        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
+        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortHighestPrice}>Highest Price</button>
       </div>
 
       <div className="flex flex-col ">
@@ -55,30 +74,18 @@ const Alltoys = () => {
                 <table className="min-w-full text-left text-sm font-light">
                   <thead className="border-b font-medium dark:border-neutral-500">
                     <tr>
-                      <th scope="col" className="px-6 py-4">
-                        Seller
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Toy Name
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Sub Category
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Price
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Avail.Quant.
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Details
-                      </th>
+                      <th scope="col" className="px-6 py-4">Seller</th>
+                      <th scope="col" className="px-6 py-4">Toy Name</th>
+                      <th scope="col" className="px-6 py-4">Sub Category</th>
+                      <th scope="col" className="px-6 py-4">Price</th>
+                      <th scope="col" className="px-6 py-4">Avail.Quant.</th>
+                      <th scope="col" className="px-6 py-4">Details</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  
-                  {toys.slice(0, 20).map((toy) => (
+
+                    {toys.slice(0, 20).map((toy) => (
                       <tr
                         className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
                         key={toy._id}

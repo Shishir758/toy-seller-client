@@ -19,7 +19,7 @@ function Footer() {
         <div className="w-full md:w-1/3">
 
 
-        <div className="flex items-center flex-shrink-0">
+        <div className="flex items-center flex-shrink-0 ml-16">
         <img src={logo} className="h-[65px] w-[65px] rounded-full inline-block border border-b-slate-200" alt="" />
         <h1 className="ml-4 font-bold text-red-500 text-3xl tracking-tight">Findus Toys</h1>
         </div>

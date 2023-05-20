@@ -38,7 +38,8 @@ const ViewToy = () => {
       <div className="max-w-xl mx-auto rounded overflow-hidden shadow-lg">
         <img className="w-full text-center" src={viewToy.pictureUrl} alt="Sunset in the mountains" />
         <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Toy's Name: '{viewToy.name}' <span> <Rating style={{ maxWidth: 100 }} value={viewToy?.rating} readOnly/></span></div>
+          <div className="font-bold text-xl mb-2">Toy's Name: '{viewToy.name}' <span><Rating style={{ maxWidth: 100 }} defaultvalue={viewToy?.rating} readOnly/> <span className="ml-2">{viewToy.rating}</span></span></div>
+
           <p className="text-gray-700 text-base"><b>Discription:</b></p>
           <p className="text-gray-700 text-base">{viewToy.description}</p>
 
