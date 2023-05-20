@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App></App>,
     errorElement: <ErrorPage />,
-    loader: () => fetch('http://localhost:5000/products')
+    loader: () => fetch('https://toy-serer-side.vercel.app/products')
   },
 
   {
@@ -38,12 +38,12 @@ const router = createBrowserRouter([
   {
     path: 'viewToy/:id',
     element: <PrivateRoute><ViewToy></ViewToy></PrivateRoute>,
-    loader: () => fetch('http://localhost:5000/products')
+    loader: () => fetch('https://toy-serer-side.vercel.app/products')
   },
   {
     path: 'mytoys',
     element: <MyToys></MyToys>,
-    loader: () => fetch('http://localhost:5000/products')
+    loader: () => fetch('https://toy-serer-side.vercel.app/products')
   },
   {
     path: 'addtoy',
@@ -52,12 +52,12 @@ const router = createBrowserRouter([
   {
     path: 'alltoys',
     element: <Alltoys></Alltoys>,
-    loader: () => fetch('http://localhost:5000/products')
+    loader: () => fetch('https://toy-serer-side.vercel.app/products')
   },
   {
     path: 'updateAtoy/:id',
     element: <UpdateAtoy></UpdateAtoy>,
-    loader: () => fetch('http://localhost:5000/products')
+    loader: () => fetch('https://toy-serer-side.vercel.app/products')
   }
   
 

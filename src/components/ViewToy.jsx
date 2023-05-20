@@ -14,7 +14,7 @@ const ViewToy = () => {
   const [viewToy, setViewToy] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch('https://toy-serer-side.vercel.app/products')
       .then(response => response.json())
       .then(data => setDetailsData(data))
   }, []);
@@ -52,7 +52,7 @@ const ViewToy = () => {
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Seller: {viewToy.sellerName}</span>
 
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Seller Email: {viewToy.sellerEmail}</span>
-          <p><Link to="/alltoys"  className='btn rounded-xl my-2'>See all toys</Link></p>
+          <p className='mt-4 mb-4'><Link to="/alltoys"  className='bg-blue-500 rounded-md text-white text-bold p-2 my-2'>See all toys</Link></p>
         </div>
       </div>
       <Footer />

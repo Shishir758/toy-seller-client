@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../useTitle';
 import Footer from './Footer';
 import Header from './Header';
 
 const UpdateAtoy = () => {
+  useTitle("Update Toy's Info ")
   const [singleToy, setSingleToy] = useState([]);
   const toys = useLoaderData();
   const { id } = useParams();
@@ -34,7 +36,7 @@ const handleUpdate =(event)=>{
   })
   .then((result) => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:5000/products/${id}`,{
+      fetch(`https://toy-serer-side.vercel.app/products/${id}`,{
         method: 'PUT',
         headers:{'content-type':'application/json'},
         body:JSON.stringify(updateInfo)

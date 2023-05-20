@@ -13,14 +13,14 @@ const Alltoys = () => {
   console.log(alltoys);
 
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch('https://toy-serer-side.vercel.app/products')
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);
 
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/searchToy/${searchText}`)
+    fetch(`https://toy-serer-side.vercel.app/searchToy/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
@@ -42,7 +42,9 @@ const Alltoys = () => {
           onClick={handleSearch}
         >
           Search
-        </button>
+        </button> 
+        <button className='mr-4 ml-20 '>High Price</button>
+        <button>Low Price</button>
       </div>
 
       <div className="flex flex-col ">

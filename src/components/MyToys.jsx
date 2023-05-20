@@ -14,7 +14,7 @@ const MyToys = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${user?.email}`)
+    fetch(`https://toy-serer-side.vercel.app/products/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -38,7 +38,7 @@ const handleDelete =(id)=>{
   .then((result) => {
     if (result.isConfirmed) {
 
-      fetch(`http://localhost:5000/products/${id}`,{
+      fetch(`https://toy-serer-side.vercel.app/products/${id}`,{
         method: 'delete'
       })
 

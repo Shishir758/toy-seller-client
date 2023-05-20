@@ -8,16 +8,21 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { ToastContainer } from 'react-bootstrap';
 import useTitle from '../useTitle';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 
 
 const Home = () => {
+  useEffect(()=>{
+    Aos.init({duration: 2000});
+  },[])
+
   useTitle('Home')
-
-
-  const { loading, user } = useContext(AuthContext);
+  const { loading} = useContext(AuthContext);
   if (loading) {
-    return
+    return 
   }
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -53,8 +58,8 @@ const Home = () => {
         <h1 className='text-center font-bold text-2xl mt-10'>Toy's Photo Gallery</h1>
 
       </div>
-      <div className="mx-5 grid lg:grid-cols-4 gap-4">
-        {filteredData.slice(0, 4).map((dData) => (
+      <div className="mx-5 grid lg:grid-cols-4 gap-4" data-aos='fade-right'>
+        {filteredData.slice(6,10).map((dData) => (
           <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full hover:scale-90 transform transition-all duration-300">
             <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
             <div className="flex-grow"></div>
@@ -68,7 +73,7 @@ const Home = () => {
         <h1 className='text-center text-2xl mt-2'>Choose the best baby car toys for your little ones.</h1>
       </div>
 
-      <div className="mx-5 grid lg:grid-cols-3 gap-4 h-full">
+      <div className="mx-5 grid lg:grid-cols-3 gap-4 h-full" data-aos='fade-up'>
         {filteredData.slice(0, 6).map((dData) => (
           <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
             <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
@@ -129,7 +134,7 @@ const Home = () => {
           <TabPanel>
             <h2 className='text-center font-bold'>Sub-categories for Police Toy Car</h2>
             <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
-              {filteredData.slice(4, 6).map((dData) => (
+              {filteredData.slice(2, 4).map((dData) => (
                 <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
                   <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
                   <div className=" pt-4 pb-2 justify-between align-middle">
@@ -159,7 +164,7 @@ const Home = () => {
           <TabPanel>
             <h2 className='text-center font-bold'>Sub-categories for Regular Toy Car</h2>
             <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
-              {filteredData.slice(2, 4).map((dData) => (
+              {filteredData.slice(4, 6 ).map((dData) => (
                 <div className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
                   <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
                   <div className=" pt-4 pb-2 justify-between align-middle">

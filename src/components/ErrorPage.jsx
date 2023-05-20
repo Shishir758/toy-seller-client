@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, useRouteError } from 'react-router-dom'
 import PageNotFound from '../assest/404.gif';
+import useTitle from '../useTitle';
 
 const ErrorPage = () => {
+  useTitle('Error Page')
   const { error, status } = useRouteError()
   return (
     <section className='flex items-center h-screen p-16 bg-gray-100 text-gray-900'>

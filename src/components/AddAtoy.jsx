@@ -50,7 +50,7 @@ const AddAtoy = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5000/products',{
+    fetch('https://toy-serer-side.vercel.app/products',{
       method: 'post',
       headers:{'content-type':'application/json'},
       body: JSON.stringify(toyData)
