@@ -55,14 +55,14 @@ const Header = () => {
           } w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
       >
         <div className="text-sm lg:flex-grow text-center mx-auto">
-          <NavLink
-            exact={true}
-            to="/"
-            className="block mt-4 lg:inline-block lg:mt-0 font-bold hover:text-blue-500 mr-4 text-xl"
-            activeStyle={{ color: "blue" }}
-          >
-            Home
-          </NavLink>
+        <NavLink
+  exact={true}
+  to="/"
+  className="block mt-4 lg:inline-block lg:mt-0 font-bold hover:text-blue-500 mr-4 text-xl"
+  activeStyle={{ color: "blue" }}
+>
+  Home
+</NavLink>
           <NavLink
             exact={true}
             to="/alltoys"

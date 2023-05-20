@@ -6,6 +6,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../useTitle';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const initialState  = {
   pictureUrl: '',
@@ -59,7 +61,13 @@ console.log(e.target);
     })
     .then(res=>res.json())
     .then(data =>{console.log(data)});
-    toast.success('Data sent successfully!');
+    // toast.success('Data sent successfully!');
+    Swal.fire({
+      title: 'Success!',
+      text: 'Successfully added with toy list.',
+      icon: 'info',
+      confirmButtonText: 'Close',
+    });
     setToyData(initialState);
     
   };
@@ -212,10 +220,21 @@ console.log(e.target);
 
         <div className='text-center mb-8'><button 
           type="submit"
+          className="mr-8 mb-4 bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4"
+        >
+          Add A Toy
+        </button> 
+        
+        <Link to='/mytoys'>
+        <span><button 
+          type="submit"
           className=" mb-4 bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4"
         >
-          Add Toy
-        </button></div>
+          Back to My Toys
+        </button></span>
+            </Link>
+            
+            </div>
       </form>
     </div> 
     <ToastContainer></ToastContainer>

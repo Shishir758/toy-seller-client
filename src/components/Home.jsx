@@ -12,7 +12,7 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import { AuthContext } from './provider/AuthProviders';
 import Swal from 'sweetalert2';
-import { Toast } from 'bootstrap';
+
 
 
 const Home = () => {
@@ -49,6 +49,11 @@ const handleViewToy = () => {
   }
   
 };
+
+const regularCategory = detailsData.filter(regularCar => regularCar.subCategory === 'Regular Toy Car');
+const policeCategory = detailsData.filter(policeCar => policeCar.subCategory === 'Police Toy Car');
+const truckCategory = detailsData.filter(truck => truck.subCategory === 'Toy Truck');
+
 
 
 return (
@@ -123,7 +128,7 @@ return (
         <TabPanel>
           <h2 className='text-center font-bold'>Sub-categories for Regular Toy Car</h2>
           <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
-            {detailsData.slice(0, 2).map((dData) => (
+            {regularCategory.slice(0, 2).map((dData) => (
               <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
                 <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
                 <div className=" pt-4 pb-2 justify-between align-middle">
@@ -153,7 +158,7 @@ return (
         <TabPanel>
           <h2 className='text-center font-bold'>Sub-categories for Police Toy Car</h2>
           <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
-            {detailsData.slice(2, 4).map((dData) => (
+            {policeCategory.slice(0,2).map((dData) => (
               <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
                 <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
                 <div className=" pt-4 pb-2 justify-between align-middle">
@@ -178,7 +183,7 @@ return (
         <TabPanel>
           <h2 className='text-center font-bold'>Sub-categories for Toy Truck</h2>
           <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
-            {detailsData.slice(4, 6).map((dData) => (
+            {truckCategory.slice(0,2).map((dData) => (
               <div className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
                 <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />
                 <div className=" pt-4 pb-2 justify-between align-middle">
