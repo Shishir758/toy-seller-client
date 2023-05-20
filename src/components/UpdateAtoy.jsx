@@ -27,7 +27,7 @@ const handleUpdate =(event)=>{
 
   Swal.fire({
     title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+    text: "You will be able to update again!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -44,12 +44,16 @@ const handleUpdate =(event)=>{
       .then(res => res.json())
       .then(data =>{
         if (data.modifiedCount > 0) {
-          Swal.fire(
-            'Update!',
-            'Information has been updated.',
-            'success'
-          );
-          window.location.href = '/mytoys';
+          Swal.fire({
+            title: 'Update!',
+            text: 'Information has been successfully updated.',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '/mytoys';
+            }
+          });
         }
       })
      

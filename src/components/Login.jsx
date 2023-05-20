@@ -94,7 +94,7 @@ const Login = () => {
           </p>
         </div>
 
-        <button className='btn bg-red-400 mb-5' onClick={googleSignIn} >
+        <button className='btn p-4 text-white rounded-md font-bold bg-red-400 mb-5' onClick={googleSignIn} >
           Login With Google
         </button>
       </div>

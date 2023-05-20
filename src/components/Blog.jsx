@@ -34,7 +34,7 @@ const blog = () => {
           </div>
           <br></br>
 
-          <p><b>=> How do access token and refresh token work?</b></p>
+          <p><b>== How do access token and refresh token work?</b></p>
           <div className=' justify-between gap-8 md:flex lg:flex flex-row '>
             
             <div className='md:w-1/2 lg:md:w-1/2'> <p><b>* Access Token:</b><br></br></p>
@@ -90,7 +90,7 @@ const blog = () => {
             </div>
           </div>
 
-          <div><p><b>=> where should we store access token and refresh token on the client-side??</b></p>
+          <div><p><b>== where should we store access token and refresh token on the client-side??</b></p>
             <p>You can store the access token and refresh token in the server-side session. The application can use web sessions to communicate with the server. The token is then available for any requests originating from server-side code. This is also known as the backend for frontend (BFF) proxy.
             </p></div>
             <br></br>
