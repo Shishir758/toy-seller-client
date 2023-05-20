@@ -78,6 +78,7 @@ const Alltoys = () => {
                 <table className="min-w-full text-left text-sm font-light">
                   <thead className="border-b font-medium dark:border-neutral-500">
                     <tr>
+                      <th scope="col" className="px-6 py-4">Sl</th>
                       <th scope="col" className="px-6 py-4">Seller</th>
                       <th scope="col" className="px-6 py-4">Toy Name</th>
                       <th scope="col" className="px-6 py-4">Sub Category</th>
@@ -87,8 +88,9 @@ const Alltoys = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {toys.slice(0, 20).map((toy) => (
+                    {toys.slice(0, 20).map((toy,index) => (
                       <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" key={toy._id}>
+    <td className="whitespace-nowrap px-6 py-4">{index+1}</td>
     <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
     <td className="whitespace-nowrap px-6 py-4">{toy.name}</td>
     <td className="whitespace-nowrap px-6 py-4">{toy.subCategory}</td>
