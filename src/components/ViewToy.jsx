@@ -39,7 +39,7 @@ const ViewToy = () => {
         <img className="w-full text-center" src={viewToy.pictureUrl} alt="Sunset in the mountains" />
         <div className="px-6 py-4">
 
-        <div className=" text-md mb-2">Toy's Name: '{viewToy.name}'
+        <div className=" text-md mb-2"><b>Toy's Name: '{viewToy.name}'</b>
           <div style={{ display: 'flex', alignItems: 'center' }}>
           <Rating style={{ maxWidth: 100 }}value={viewToy?.rating}readOnly/>
           <span style={{ marginLeft: 4 }}>{viewToy?.rating}</span>

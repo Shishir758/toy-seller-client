@@ -23,7 +23,6 @@ const handleUpdate =(event)=>{
   const quantity = form.quantity.value;
   const description = form.description.value;
   const updateInfo ={price, quantity, description};
-  console.log(updateInfo);
 
   Swal.fire({
     title: 'Are you sure?',
