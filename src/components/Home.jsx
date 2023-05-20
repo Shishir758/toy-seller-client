@@ -114,10 +114,12 @@ return (
                 <div className=" pt-4 pb-2 justify-between align-middle">
                   <span className="font-bold text-xl mb-2 mr-4">{dData.name}</span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price: USD$ {dData.price}</span>
-                  <span style={{ display: 'inline-block' }}> 
                   
-                  <Rating style={{ maxWidth: 100 }} defaultValue='2' readOnly /></span>
-                  <span className=" text-lg ml-2">{dData.rating}</span>
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+          <Rating style={{ maxWidth: 100 }}value={dData?.rating}readOnly/>
+          <span style={{ marginLeft: 4 }}>{dData?.rating}</span>
+          </span>
+                  
                 </div>
 
                 <div className="flex-grow"></div>
@@ -142,8 +144,12 @@ return (
                 <div className=" pt-4 pb-2 justify-between align-middle">
                   <span className="font-bold text-xl mb-2 mr-4">{dData.name}</span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price: USD$ {dData.price}</span>
-                  <span style={{ display: 'inline-block' }}> <Rating style={{ maxWidth: 100 }} defaultValue={dData?.rating} readOnly /></span>
-                  <span className=" text-lg ml-2">{dData.rating}</span>
+                  
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+          <Rating style={{ maxWidth: 100 }}value={dData?.rating}readOnly/>
+          <span style={{ marginLeft: 4 }}>{dData?.rating}</span>
+          </span>
+                  
                 </div>
                 <div className="flex-grow"></div>
                 <div className="mt-auto">
@@ -164,7 +170,7 @@ return (
         </TabPanel>
 
         <TabPanel>
-          <h2 className='text-center font-bold'>Sub-categories for Regular Toy Car</h2>
+          <h2 className='text-center font-bold'>Sub-categories for Toy Truck</h2>
           <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
             {detailsData.slice(4, 6).map((dData) => (
               <div className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
@@ -172,8 +178,12 @@ return (
                 <div className=" pt-4 pb-2 justify-between align-middle">
                   <span className="font-bold text-xl mb-2 mr-4">{dData.name}</span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price: USD$ {dData.price}</span>
-                  <span style={{ display: 'inline-block' }}> <Rating style={{ maxWidth: 100 }} defaultValue={dData?.rating} readOnly /></span>
-                  <span className=" text-lg ml-2">{dData.rating}</span>
+                  
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+          <Rating style={{ maxWidth: 100 }}value={dData?.rating}readOnly/>
+          <span style={{ marginLeft: 4 }}>{dData?.rating}</span>
+          </span>
+                  
                 </div>
                 <div className="flex-grow"></div>
                 <div className="mt-auto">

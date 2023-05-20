@@ -6,12 +6,10 @@ import useTitle from '../useTitle';
 
 const Alltoys = () => {
   useTitle('All Toys')
-
   const [searchText, setSearchText] = useState('');
   const [toys, setToys] = useState([]);
   const [sort, setSort] = useState('low');
   const [sortOrder, setSortOrder] = useState('');
-
   const alltoys = useLoaderData();
 
   useEffect(() => {
@@ -27,45 +25,35 @@ const Alltoys = () => {
         setToys(data);
       });
   };
-
   const handleSortLowestPrice = () => {
     const sorted = toys.slice().sort((a, b) => a.price - b.price);
     setToys(sorted);
     setSortOrder('asc');
   };
-
   const handleSortHighestPrice = () => {
     const sorted = toys.slice().sort((a, b) => b.price - a.price);
     setToys(sorted);
     setSortOrder('desc');
   };
 
-
-
   return (
     <>
       <Header />
-
       <div className="search-box p-2 text-center border-b-slate-400 mt-4">
-        <button
-          className='btn mr-8 bg-blue-500 p-2 text-white rounded-xl'
-          onClick={() => window.location.reload()}
-        >
-          Show All
-        </button>
-        <input onChange={(event) => setSearchText(event.target.value)} class="shadow appearance-none border rounded mr-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Search" />
-        <button
-          className="btn ml-8 bg-blue-500 p-2 text-white rounded-xl"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
-
-
-        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
+      <button className='btn bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
         <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortHighestPrice}>Highest Price</button>
-      </div>
 
+        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl'
+          onClick={() => window.location.reload()}>Show All</button>
+
+<br></br><br></br>
+
+        <input onChange={(event) => setSearchText(event.target.value)} class="shadow appearance-none border rounded mr-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Search" />
+        
+        <button className="btn bg-blue-500 p-2 text-white rounded-xl"
+          onClick={handleSearch}>Search</button>
+
+      </div>
       <div className="flex flex-col ">
         <div className="overflow-x-auto sm:-mx-6 lg:mx-8 mx-auto">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -83,42 +71,18 @@ const Alltoys = () => {
                     </tr>
                   </thead>
                   <tbody>
-
-
                     {toys.slice(0, 20).map((toy) => (
-                      <tr
-                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
-                        key={toy._id}
-                      >
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {toy.sellerName}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {toy.name}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {toy.subCategory}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {toy.price}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {toy.quantity}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          <Link to={`/ViewToy/${toy._id}`}>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
-                              View Toy
-                            </button>
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p className="text-center">No toys found.</p>
-              )}
+                      <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" key={toy._id}>
+    <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
+    <td className="whitespace-nowrap px-6 py-4">{toy.name}</td>
+    <td className="whitespace-nowrap px-6 py-4">{toy.subCategory}</td>
+    <td className="whitespace-nowrap px-6 py-4">{toy.price}</td>
+    <td className="whitespace-nowrap px-6 py-4">{toy.quantity}</td>
+    <td className="whitespace-nowrap px-6 py-4">
+    <Link to={`/ViewToy/${toy._id}`}><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+    View Toy</button></Link></td></tr>))}
+  </tbody>
+</table>) : (<p className="text-center">No toys found.</p>)}
             </div>
           </div>
         </div>
@@ -127,5 +91,4 @@ const Alltoys = () => {
     </>
   );
 };
-
 export default Alltoys;
