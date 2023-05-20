@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link, useLoaderData, } from 'react-router-dom';
-import { AuthContext } from './provider/AuthProviders';
+import React, { useContext, useState} from 'react';
+import { Link } from 'react-router-dom';
 import bannerImage from '../assest/bannner.png';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -11,12 +10,15 @@ import useTitle from '../useTitle';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
-
+import { AuthContext } from './provider/AuthProviders';
+import Swal from 'sweetalert2';
+import { Toast } from 'bootstrap';
 
 
 const Home = () => {
-
+  const { user } = useContext(AuthContext);
   const [detailsData, setDetailsData] = useState([])
+  // const history = useHistory();
 
   useEffect(() => {
     fetch('https://toy-serer-side.vercel.app/products')
@@ -35,6 +37,19 @@ const [selectedTab, setSelectedTab] = useState(0);
 const handleTabSelect = (index) => {
   setSelectedTab(index);
 };
+
+const handleViewToy = () => {
+  if(!user){
+    Swal.fire({
+      title: 'Want to view Details?',
+      text: 'You have login first to view details.',
+      icon: 'info',
+      confirmButtonText: 'Close',
+    });
+  }
+  
+};
+
 
 return (
   <>
@@ -84,7 +99,7 @@ return (
           <div className="flex-grow"></div>
           <div className="mt-auto">
             <Link to={`/ViewToy/${dData._id}`}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+              <button onClick= { handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
                 View Toy
               </button>
             </Link>
@@ -125,7 +140,7 @@ return (
                 <div className="flex-grow"></div>
                 <div className="mt-auto">
                   <Link to={`/ViewToy/${dData._id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+                    <button  onClick= { handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
                       View Toy
                     </button>
                   </Link>
@@ -149,26 +164,17 @@ return (
           <Rating style={{ maxWidth: 100 }}value={dData?.rating}readOnly/>
           <span style={{ marginLeft: 4 }}>{dData?.rating}</span>
           </span>
-                  
-                </div>
-                <div className="flex-grow"></div>
-                <div className="mt-auto">
+        </div>
+        
+    <div className="mt-auto">
+    <Link to={`/ViewToy/${dData._id}`}>
+    <button  onClick= { handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+    View Toy</button></Link>
+    </div>
+  </div>))}
 
-
-                  <Link to={`/ViewToy/${dData._id}`}>
-
-                    <button onClick={() => handleViewToy(dData._id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
-                      View Toy
-                    </button>
-
-                  </Link>
-
-                </div>
-              </div>
-            ))}
-          </div>
+        </div>
         </TabPanel>
-
         <TabPanel>
           <h2 className='text-center font-bold'>Sub-categories for Toy Truck</h2>
           <div className="lg:mx-32 grid lg:grid-cols-2 gap-4 h-full">
@@ -188,7 +194,7 @@ return (
                 <div className="flex-grow"></div>
                 <div className="mt-auto">
                   <Link to={`/ViewToy/${dData._id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+                    <button  onClick= { handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
                       View Toy
                     </button>
                   </Link>
@@ -263,7 +269,7 @@ return (
         Submit Order
       </button>
     </form>
-    <ToastContainer></ToastContainer>
+    <ToastContainer/>
   </>
 );
 };

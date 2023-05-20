@@ -50,14 +50,10 @@ const ViewToy = () => {
           <p className="text-gray-700 text-base">{viewToy.description}</p>
 
         </div>
-
         <div className="px-6 pt-4 pb-2 text-center">
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price: USD$ {viewToy.price}</span>
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Available Qunt. {viewToy.quantity}</span><br></br>
- 
-
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Seller: {viewToy.sellerName}</span>
-
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Seller Email: {viewToy.sellerEmail}</span>
           <p className='mt-4 mb-4'><Link to="/alltoys"  className='bg-blue-500 rounded-md text-white text-bold p-2 my-2'>See all toys</Link></p>
         </div>

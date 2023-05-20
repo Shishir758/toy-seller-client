@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link, useLoaderData } from 'react-router-dom';
 import useTitle from '../useTitle';
+import Swal from 'sweetalert2';
+import { AuthContext } from './provider/AuthProviders';
 
 const Alltoys = () => {
+  const { user } = useContext(AuthContext);
   useTitle('All Toys')
   const [searchText, setSearchText] = useState('');
   const [toys, setToys] = useState([]);
@@ -25,6 +28,17 @@ const Alltoys = () => {
         setToys(data);
       });
   };
+
+  const handleViewToy = () => {
+    if(!user){
+      Swal.fire({
+        title: 'Want to view Details?',
+        text: 'You have login first to view details.',
+        icon: 'info',
+        confirmButtonText: 'Close',
+      });
+    } 
+  };
   const handleSortLowestPrice = () => {
     const sorted = toys.slice().sort((a, b) => a.price - b.price);
     setToys(sorted);
@@ -35,6 +49,8 @@ const Alltoys = () => {
     setToys(sorted);
     setSortOrder('desc');
   };
+
+  
 
   return (
     <>
@@ -79,7 +95,7 @@ const Alltoys = () => {
     <td className="whitespace-nowrap px-6 py-4">{toy.price}</td>
     <td className="whitespace-nowrap px-6 py-4">{toy.quantity}</td>
     <td className="whitespace-nowrap px-6 py-4">
-    <Link to={`/ViewToy/${toy._id}`}><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+    <Link to={`/ViewToy/${toy._id}`}><button onClick={ handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
     View Toy</button></Link></td></tr>))}
   </tbody>
 </table>) : (<p className="text-center">No toys found.</p>)}
