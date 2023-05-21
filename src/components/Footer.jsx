@@ -27,7 +27,7 @@ function Footer() {
           <p className="text-gray-600">Selling the best baby car toys for your little ones.</p>
         </div>
 
-        <div className="w-full md:w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center my-4">
           <h4 className="text-lg font-semibold mb-2">Contact Us</h4>
           <p className="text-gray-600">
             Email: info@findustoys.com<br />
@@ -36,9 +36,9 @@ function Footer() {
           </p>
         </div>
         
-        <div className="w-full md:w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center mb-4">
           <h4 className="text-lg font-semibold mb-2">Follow Us</h4>
-          <div className="flex justify-center h-20">
+          <div className="flex justify-center">
           <a href="#" className="text-blue-500 hover:text-gray-600 mr-2">
           <FontAwesomeIcon style={{ width: "30px", height: "30px" }}  icon={faFacebook}/></a>
           <a href="#" className="text-blue-500 hover:text-gray-600 mr-2">
@@ -51,7 +51,7 @@ function Footer() {
         </div>
       </div>
     </div>
-    <div className="container mx-auto px-4 mt-4">
+    <div className="container mx-auto px-4">
       <p className="text-center text-gray-600">
         &copy; 2023 Findus Toys. All rights reserved.
       </p>

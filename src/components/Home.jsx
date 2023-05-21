@@ -95,7 +95,7 @@ return (
       <h1 className='text-center text-2xl mt-2'>Choose the best baby car toys for your little ones.</h1>
     </div>
 
-    <div className="mx-5 grid lg:grid-cols-3 gap-4 h-full" data-aos='fade-up'>
+    <div className="mx-5 grid lg:grid-cols-3 mb-8 gap-4 h-full" data-aos='fade-up'>
       {detailsData.slice(0, 6).map((dData) => (
         <div key={dData._id} className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
           <img src={dData.pictureUrl} alt="Truck" className="w-full mb-4 h-96" />

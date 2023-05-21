@@ -24,7 +24,7 @@ const initialState  = {
 const AddAtoy = () => {
   useTitle('Add A Toy')
   const { user, loading } = useContext(AuthContext);
-  console.log(user);
+
 
   const [toyData, setToyData] = useState(initialState);
 
@@ -53,14 +53,13 @@ const AddAtoy = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-console.log(e.target);
     fetch('https://toy-serer-side.vercel.app/products',{
       method: 'POST',
       headers:{'content-type':'application/json'},
       body: JSON.stringify(toyData)
     })
     .then(res=>res.json())
-    .then(data =>{console.log(data)});
+    .then(data =>(data));
     // toast.success('Data sent successfully!');
     Swal.fire({
       title: 'Success!',

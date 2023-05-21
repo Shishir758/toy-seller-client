@@ -8,12 +8,7 @@ import logo from '../assest/logo.png';
 const Header = () => {
   const { user, logOut, loading } = useContext(AuthContext);
 
-  if (loading) {
-    return null; // Return a loading state if loading is true
-  }
-
   const location = useLocation();
-
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -28,7 +23,6 @@ const Header = () => {
     logOut()
       .then(() => {})
       .catch((error) => {
-        // Handle error if logout fails
       });
   };
 
@@ -64,16 +58,12 @@ const Header = () => {
       >
         <div className="text-sm lg:flex-grow text-center mx-auto">
           <NavLink
-            exact={true}
+          
             to="/"
             className={`block mt-4 lg:inline-block lg:mt-0 font-bold hover:text-blue-500 mr-4 text-xl ${isActive('/') ? 'text-blue-500' : ''}`} 
-            isActive={isActive}
-          >
-            Home
+            isActive={isActive}>Home
           </NavLink>
-          <NavLink
-            exact={true}
-            to="/alltoys"
+          <NavLink to="/alltoys"
             className={`block mt-4 lg:inline-block lg:mt-0 font-bold hover:text-blue-500 mr-4 text-xl ${isActive('/alltoys') ? 'text-blue-500' : ''}`}
             isActive={isActive}
           >
