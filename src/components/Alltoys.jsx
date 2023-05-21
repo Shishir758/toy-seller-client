@@ -13,7 +13,6 @@ const Alltoys = () => {
   const [toys, setToys] = useState([]);
   const [sort, setSort] = useState('low');
   const [sortOrder, setSortOrder] = useState('');
-  const alltoys = useLoaderData();
 
   useEffect(() => {
     fetch('https://toy-serer-side.vercel.app/products')
@@ -30,14 +29,14 @@ const Alltoys = () => {
   };
 
   const handleViewToy = () => {
-    if(!user){
+    if (!user) {
       Swal.fire({
         title: 'Want to view Details?',
         text: 'You have login first to view details.',
         icon: 'info',
         confirmButtonText: 'Close',
       });
-    } 
+    }
   };
   const handleSortLowestPrice = () => {
     const sorted = toys.slice().sort((a, b) => a.price - b.price);
@@ -50,22 +49,21 @@ const Alltoys = () => {
     setSortOrder('desc');
   };
 
-  
 
   return (
     <>
       <Header />
       <div className="search-box p-2 text-center border-b-slate-400 mt-4">
-      <button className='btn bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
+        <button className='btn bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
         <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortHighestPrice}>Highest Price</button>
 
         <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl'
           onClick={() => window.location.reload()}>Show All</button>
 
-<br></br><br></br>
+        <br></br><br></br>
 
         <input onChange={(event) => setSearchText(event.target.value)} class="shadow appearance-none border rounded mr-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Search" />
-        
+
         <button className="btn bg-blue-500 p-2 text-white rounded-xl"
           onClick={handleSearch}>Search</button>
 
@@ -88,19 +86,19 @@ const Alltoys = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {toys.map((toy,index) => (
+                    {toys.map((toy, index) => (
                       <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" key={toy._id}>
-    <td className="whitespace-nowrap px-6 py-4">{index+1}</td>
-    <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
-    <td className="whitespace-nowrap px-6 py-4">{toy.name}</td>
-    <td className="whitespace-nowrap px-6 py-4">{toy.subCategory}</td>
-    <td className="whitespace-nowrap px-6 py-4">{toy.price}</td>
-    <td className="whitespace-nowrap px-6 py-4">{toy.quantity}</td>
-    <td className="whitespace-nowrap px-6 py-4">
-    <Link to={`/ViewToy/${toy._id}`}><button onClick={ handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
-    View Toy</button></Link></td></tr>))}
-  </tbody>
-</table>) : (<p className="text-center">No toys found.</p>)}
+                        <td className="whitespace-nowrap px-6 py-4">{index + 1}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{toy.name}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{toy.subCategory}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{toy.price}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{toy.quantity}</td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          <Link to={`/ViewToy/${toy._id}`}><button onClick={handleViewToy} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+                            View Toy</button></Link></td></tr>))}
+                  </tbody>
+                </table>) : (<p className="text-center">No toys found.</p>)}
             </div>
           </div>
         </div>
