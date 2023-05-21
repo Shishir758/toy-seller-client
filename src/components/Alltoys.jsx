@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useTitle from '../useTitle';
 import Swal from 'sweetalert2';
 import { AuthContext } from './provider/AuthProviders';
@@ -11,8 +11,6 @@ const Alltoys = () => {
   useTitle('All Toys')
   const [searchText, setSearchText] = useState('');
   const [toys, setToys] = useState([]);
-  const [sort, setSort] = useState('low');
-  const [sortOrder, setSortOrder] = useState('');
 
   useEffect(() => {
     fetch('https://toy-serer-side.vercel.app/products')
@@ -38,34 +36,24 @@ const Alltoys = () => {
       });
     }
   };
-  const handleSortLowestPrice = () => {
-    const sorted = toys.slice().sort((a, b) => a.price - b.price);
-    setToys(sorted);
-    setSortOrder('asc');
-  };
-  const handleSortHighestPrice = () => {
-    const sorted = toys.slice().sort((a, b) => b.price - a.price);
-    setToys(sorted);
-    setSortOrder('desc');
-  };
-
+ 
 
   return (
     <>
       <Header />
       <div className="search-box p-2 text-center border-b-slate-400 mt-4">
-        <button className='btn bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortLowestPrice}>Lowest Price</button>
-        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortHighestPrice}>Highest Price</button>
+       
 
-        <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl'
-          onClick={() => window.location.reload()}>Show All</button>
+        
 
-        <br></br><br></br>
+
 
         <input onChange={(event) => setSearchText(event.target.value)} class="shadow appearance-none border rounded mr-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Search" />
 
         <button className="btn bg-blue-500 p-2 text-white rounded-xl"
           onClick={handleSearch}>Search</button>
+          <button className='btn ml-8 bg-blue-500 p-2 text-white rounded-xl'
+          onClick={() => window.location.reload()}>Show All</button>
 
       </div>
       <div className="flex flex-col ">

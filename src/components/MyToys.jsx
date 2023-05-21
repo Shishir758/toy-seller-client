@@ -7,18 +7,36 @@ import Header from './Header';
 import { AuthContext } from './provider/AuthProviders';
 
 const MyToys = () => {
-  useTitle('My Toys')
+  useTitle('My Toys');
   const alltoys = useLoaderData();
   const { user } = useContext(AuthContext);
-  const [jobs, setJobs] = useState([]);
+  const [toys, setToys] = useState([]);
+  const [sortAsc, setSortAsc] = useState([]);
+  const [sortDsc, setSortDsc] = useState([]);
 
   useEffect(() => {
     fetch(`https://toy-serer-side.vercel.app/products/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setJobs(data);
+        setToys(data);
       });
-  }, [jobs, user]);
+  }, [user]);
+
+  useEffect(() => {
+    fetch(`https://toy-serer-side.vercel.app/sortAsc`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSortAsc(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`https://toy-serer-side.vercel.app/sortDsc`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSortDsc(data);
+      });
+  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -40,23 +58,39 @@ const MyToys = () => {
                   'Deleted!',
                   'Your file has been deleted.',
                   'success'
-                )
+                );
               }
-            })
+            });
         }
-      })
-  }
+      });
+  };
 
+  const handleSortAsc = () => {
+    setToys(sortAsc);
+  };
+
+  const handleSortDsc = () => {
+    setToys(sortDsc);
+  };
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <div>
         <div className="my-jobs-container">
           <h1 className="text-center p-4 font-bold text-xl ">ALL My Toys</h1>
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:mx-8">
               <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div className='flex justify-center'>
+                  <div>
+                    <button className='btn mr-8 bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortAsc}>Ascending</button>
+                  </div>
+                  <div>
+                    <button className='btn bg-blue-500 p-2 text-white rounded-xl' onClick={handleSortDsc}>Descending</button>
+                  </div>
+                </div>
+
                 <div className="overflow-hidden">
                   <table className="min-w-full text-left text-sm font-light">
                     <thead className="border-b font-medium dark:border-neutral-500">
@@ -72,8 +106,7 @@ const MyToys = () => {
                       </tr>
                     </thead>
                     <tbody>
-
-                      {jobs.map((toy, index) => (
+                      {toys.map((toy, index) => (
                         <tr key={toy._id} className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                           <td className="whitespace-nowrap px-6 py-4">{index + 1}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
@@ -99,7 +132,7 @@ const MyToys = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };
