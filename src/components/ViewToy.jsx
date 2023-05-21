@@ -22,7 +22,6 @@ const ViewToy = () => {
 
   useEffect(() => {
     const matchingDetails = detailsData.find(detail => detail._id == id);
-    console.log(matchingDetails);
     setViewToy(matchingDetails);
   }, [detailsData, id]);
 
