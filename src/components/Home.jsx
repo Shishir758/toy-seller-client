@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
-import { ToastContainer } from 'react-bootstrap';
+
 import useTitle from '../useTitle';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -274,7 +274,6 @@ return (
         Submit Order
       </button>
     </form>
-    <ToastContainer/>
   </>
 );
 };
