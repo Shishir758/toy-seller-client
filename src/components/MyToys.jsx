@@ -14,32 +14,38 @@ const MyToys = () => {
 
   useEffect(() => {
     fetch(`https://toy-serer-side.vercel.app/products/${user?.email}`)
-    .then((res) => res.json())
-    .then((data) => {
-    setJobs(data);});
+      .then((res) => res.json())
+      .then((data) => {
+        setJobs(data);
+      });
   }, [jobs, user]);
 
-const handleDelete =(id)=>{
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  })
-  .then((result) => {
-    if (result.isConfirmed) {
-      fetch(`https://toy-serer-side.vercel.app/products/${id}`,{method: 'delete'})
-      .then(res => res.json())
-      .then(data =>{
-        if(data.deletedCount > 0){
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-)}})}})}
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          fetch(`https://toy-serer-side.vercel.app/products/${id}`, { method: 'delete' })
+            .then(res => res.json())
+            .then(data => {
+              if (data.deletedCount > 0) {
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                )
+              }
+            })
+        }
+      })
+  }
 
 
   return (
@@ -57,6 +63,7 @@ const handleDelete =(id)=>{
                       <tr>
                         {/* <th scope="col" className="px-6 py-4">#</th> */}
                         <th scope="col" className="px-6 py-4">Seller</th>
+                        <th scope="col" className="px-6 py-4">Seller</th>
                         <th scope="col" className="px-6 py-4">Toy Name</th>
                         <th scope="col" className="px-6 py-4">Sub Category</th>
                         <th scope="col" className="px-6 py-4">Price</th>
@@ -66,20 +73,24 @@ const handleDelete =(id)=>{
                     </thead>
                     <tbody>
 
-                      {jobs.map(toy => <tr key={toy._id}
-                          className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                      {jobs.map((toy, index) => (
+                        <tr key={toy._id} className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                          <td className="whitespace-nowrap px-6 py-4">{index + 1}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.sellerName}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.name}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.subCategory}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.price}</td>
                           <td className="whitespace-nowrap px-6 py-4">{toy.quantity}</td>
-
-      <Link to={`/updateAtoy/${toy._id}`}>
-      <button className='mb-3 mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4'>
-      Update</button></Link>
-
-      <button onClick ={()=>handleDelete(toy._id)} className='mb-3 bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4'>
-      Delete</button></tr>)}
+                          <Link to={`/updateAtoy/${toy._id}`}>
+                            <button className="mb-3 mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+                              Update
+                            </button>
+                          </Link>
+                          <button onClick={() => handleDelete(toy._id)} className="mb-3 bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+                            Delete
+                          </button>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
